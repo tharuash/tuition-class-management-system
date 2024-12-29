@@ -31,10 +31,10 @@
                      <a class="nav-link active" href="#about-us">About Us</a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="#our-services">Our Services</a>
+                     <a class="nav-link active" href="#our-services">Our Services</a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="#contact-us">Contact Us</a>
+                     <a class="nav-link active" href="#contact-us">Contact Us</a>
                  </li>
              </ul>
              <a href="${pageContext.request.contextPath}/login" class="btn btn-danger">Login</a>
@@ -45,14 +45,21 @@
  <div class="container my-5">
      <section id="about-us" class="mb-5">
          <h2 class="text-primary">About Us</h2>
-         <p>Our Student Management System is designed to simplify the process of managing student records. With user-friendly features, we aim to provide educational institutions with a seamless experience.</p>
-         <p>From enrollment to performance tracking, we ensure data is accessible and secure at all times.</p>
+         <p>Our Tuition Class Management System is meticulously crafted to streamline and enhance the management of student
+         records. By offering intuitive, user-friendly features, it empowers educational institutions to deliver a seamless
+         and efficient administrative experience.</p>
+         <p>From student enrollment to comprehensive performance tracking, our system ensures that all data remains easily
+          accessible and securely managed, providing institutions with the confidence and reliability they need to focus on
+          delivering quality education..From enrollment to performance tracking, we ensure data is accessible and secure at
+          all times.</p>
      </section>
 
      <section id="our-services" class="mb-5">
          <h2 class="text-primary">Our Services</h2>
          <ul>
              <li>Student enrollment and registration</li>
+              <li>Teacher enrollment and registration</li>
+               <li>Fee Payment Management</li>
              <li>Attendance tracking</li>
              <li>Performance analysis</li>
              <li>Customizable reporting</li>
@@ -61,14 +68,15 @@
 
      <section id="contact-us" class="mb-5">
          <h2 class="text-primary">Contact Us</h2>
-         <p>Have questions? Feel free to reach out to us:</p>
-         <p><strong>Email:</strong> support@studentms.com</p>
-         <p><strong>Phone:</strong> +123-456-7890</p>
+         <p>Have questions? Feel free to reach out to us: <br>
+         <strong>Email:</strong> support@studentms.com <br>
+         <strong>Phone:</strong> +94 75 611 4406<br>
+         <strong>Whatsapp:</strong> +94 77 988 2623</p>
      </section>
  </div>
 
  <footer class="bg-dark text-white text-center py-3 mt-auto">
-     <p>&copy; 2024 Student Management System. All rights reserved.</p>
+     <p>&copy; 2024 Tuition Class Management System. All rights reserved.</p>
  </footer>
 
  <!-- Bootstrap JS -->

@@ -48,10 +48,32 @@ public class LoginServlet extends HttpServlet {
                     null,
                     "STUDENT"
             ));
+
+        } else if ("teacher@email.com".equalsIgnoreCase(email) && "abc123".equalsIgnoreCase(password)) {
+            return Optional.of(new User(
+                    2,
+                    "Test Teacher",
+                    "teacher@email.com",
+                    null,
+                    null,
+                    "TEACHER"
+            ));
+
+        } else if ("admin@email.com".equalsIgnoreCase(email) && "abc123".equalsIgnoreCase(password)) {
+            return Optional.of(new User(
+                    3,
+                    "Test Admin",
+                    "admin@email.com",
+                    null,
+                    null,
+                    "ADMIN"
+            ));
+
         } else {
             return Optional.empty();
         }
     }
+
 
     private String setRedirectUriAccordingToTheRole(String role) {
         String redirectUri = "";
@@ -59,6 +81,14 @@ public class LoginServlet extends HttpServlet {
         switch (role) {
             case "STUDENT" :
                 redirectUri = "student";
+                break;
+
+            case "TEACHER":
+                redirectUri = "teacher";
+                break;
+
+            case "ADMIN":
+                redirectUri = "admin";
                 break;
 
             default:

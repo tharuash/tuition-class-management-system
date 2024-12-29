@@ -1,5 +1,7 @@
 package org.techlabs.student.management.system.servlets;
 
+import org.techlabs.student.management.system.dao.UserDao;
+import org.techlabs.student.management.system.dao.impl.UserDaoImpl;
 import org.techlabs.student.management.system.entity.User;
 import org.techlabs.student.management.system.util.ActionBinder;
 import org.techlabs.student.management.system.util.ActionMessage;
@@ -16,6 +18,12 @@ import java.util.Optional;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
+    private final UserDao userDao;
+
+    public LoginServlet() {
+        userDao = new UserDaoImpl();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ActionBinder.bindActionMessages(req);
@@ -24,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Optional<User> incomingUser = loginUser(req.getParameter("email"), req.getParameter("password"));
+        Optional<User> incomingUser = userDao.getUserByEmailAndPassword(req.getParameter("email"), req.getParameter("password"));
 
         if(incomingUser.isEmpty()) {
             resp.sendRedirect("login?code=" + ActionMessage.INVALID_EMAIL_OR_PASSWORD.getId());
@@ -35,42 +43,6 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("role", incomingUser.get().getRole());
 
             resp.sendRedirect(setRedirectUriAccordingToTheRole(incomingUser.get().getRole()));
-        }
-    }
-
-    private Optional<User> loginUser(String email, String password) {
-        if ("student@email.com".equalsIgnoreCase(email) && "abc123".equalsIgnoreCase(password)) {
-            return Optional.of(new User(
-                    1,
-                    "Test Student",
-                    "student@email.com",
-                    null,
-                    null,
-                    "STUDENT"
-            ));
-
-        } else if ("teacher@email.com".equalsIgnoreCase(email) && "abc123".equalsIgnoreCase(password)) {
-            return Optional.of(new User(
-                    2,
-                    "Test Teacher",
-                    "teacher@email.com",
-                    null,
-                    null,
-                    "TEACHER"
-            ));
-
-        } else if ("admin@email.com".equalsIgnoreCase(email) && "abc123".equalsIgnoreCase(password)) {
-            return Optional.of(new User(
-                    3,
-                    "Test Admin",
-                    "admin@email.com",
-                    null,
-                    null,
-                    "ADMIN"
-            ));
-
-        } else {
-            return Optional.empty();
         }
     }
 

@@ -27,6 +27,9 @@
     <header class="bg-dark text-white text-center py-4">
         <h1>Tuition Class Management System</h1>
         <p>Manage your student data efficiently</p>
+        <div style="position: absolute; top: 0; left: 0; padding: 10px; color: white; font-size: 18px;">
+                        Student Dashboard
+        </div>
     </header>
 
     <!-- Main Layout -->
@@ -36,13 +39,13 @@
             <h5 class="text-center">Menu</h5>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-white" onclick="showSection('timetable')">Timetable</a>
+                    <a href="#" class="nav-link text-white" onclick="showSection('timetable')">Class Timetable</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-white" onclick="showSection('fees')">Fees</a>
+                    <a href="#" class="nav-link text-white" onclick="showSection('paymentfees')">Check Class Payment</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-white" onclick="showSection('attendance')">Attendance</a>
+                    <a href="#" class="nav-link text-white" onclick="showSection('checkattendance')">Check Class Attendance</a>
                 </li>
             </ul>
         </nav>
@@ -50,114 +53,128 @@
         <!-- Content -->
         <main class="content flex-grow-1">
             <!-- Timetable Section -->
-            <section id="timetable" style="display: none;">
-                <h2 class="text-primary">Class Timetable</h2>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Day</th>
-                            <th>8:00 AM - 10:00 AM</th>
-                            <th>10:00 AM - 12:00 PM</th>
-                            <th>1:00 PM - 3:00 PM</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Monday</td>
-                            <td>Math</td>
-                            <td>English</td>
-                            <td>Physics</td>
-                        </tr>
-                        <tr>
-                            <td>Tuesday</td>
-                            <td>Chemistry</td>
-                            <td>Biology</td>
-                            <td>History</td>
-                        </tr>
-                        <tr>
-                            <td>Wednesday</td>
-                            <td>Math</td>
-                            <td>Computer Science</td>
-                            <td>English</td>
-                        </tr>
-                        <tr>
-                            <td>Thursday</td>
-                            <td>Physics</td>
-                            <td>Math</td>
-                            <td>Chemistry</td>
-                        </tr>
-                        <tr>
-                            <td>Friday</td>
-                            <td>Biology</td>
-                            <td>History</td>
-                            <td>Computer Science</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+           <section id="timetable" style="display: none;">
+                           <h2 class="text-primary">Class Timetable</h2>
+                           <table class="table table-bordered">
+                               <thead>
+                                   <tr>
+                                       <th>Day</th>
+                                       <th>8:00 AM - 10:00 AM</th>
+                                       <th>10:00 AM - 12:00 PM</th>
+                                       <th>1:00 PM - 3:00 PM</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                   <tr>
+                                       <td>Monday</td>
+                                       <td>Math</td>
+                                       <td>English</td>
+                                       <td>Physics</td>
+                                   </tr>
+                                   <tr>
+                                       <td>Tuesday</td>
+                                       <td>Chemistry</td>
+                                       <td>Biology</td>
+                                       <td>History</td>
+                                   </tr>
+                                   <tr>
+                                       <td>Wednesday</td>
+                                       <td>Math</td>
+                                       <td>Computer Science</td>
+                                       <td>English</td>
+                                   </tr>
+                                   <tr>
+                                       <td>Thursday</td>
+                                       <td>Physics</td>
+                                       <td>Math</td>
+                                       <td>Chemistry</td>
+                                   </tr>
+                                   <tr>
+                                       <td>Friday</td>
+                                       <td>Biology</td>
+                                       <td>History</td>
+                                       <td>Computer Science</td>
+                                   </tr>
+                                   <tr>
+                                      <td>Saturday</td>
+                                      <td>Computer Science</td>
+                                      <td>History</td>
+                                      <td>Biology</td>
+                                   </tr>
+                                   <tr>
+                                       <td>Sunday</td>
+                                       <td>-</td>
+                                       <td>-</td>
+                                       <td>Chemistry</td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </section>
 
             <!-- Fees Section -->
-            <section id="fees" style="display: none;">
-                <h2 class="text-primary">Semester Fees</h2>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Semester</th>
-                            <th>Total Fees</th>
-                            <th>Paid</th>
-                            <th>Remaining</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>$2000</td>
-                            <td>$1500</td>
-                            <td>$500</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>$2000</td>
-                            <td>$1200</td>
-                            <td>$800</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <section id="paymentfees" style="display: none;">
+                <h2 class="text-primary">Check Class Payment</h2>
+                <!-- 1. Input Student ID -->
+                     <form action="attendanceManagement.jsp" method="post">
+                     <label for="studentId">Student ID:</label>
+                     <input type="text" id="studentId" name="studentId" value="<%= request.getParameter("studentId") == null ? "" : request.getParameter("studentId") %>" required>
+                     </form> <br>
+
+                <!-- Select Class with Dropdown Menu -->
+                     <label for="classSelect">Select Class:</label>
+                     <select name="class" id="classSelect">
+                     <option value="">-- Select Class --</option>
+                     <option value="Class 1">Chemistry</option>
+                     <option value="Class 2">Math</option>
+                     <option value="Class 3">History</option>
+                     <option value="Class 3">Biology</option>
+                     <option value="Class 3">Computer Science</option>
+                     <option value="Class 3">Physics</option>
+                     <option value="Class 3">English</option>
+                     </select> <br><br>
+
+                         <!-- Text -->
+                         <p>Click here to Check Class Payment Details:</p>
+
+                         <!-- Button -->
+                         <form action="nextPage.jsp" method="get">
+                             <button type="submit">Check</button>
+                         </form>
+
+
             </section>
 
             <!-- Attendance Section -->
-            <section id="attendance" style="display: none;">
-                <h2 class="text-primary">Attendance</h2>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Class</th>
-                            <th>Attendance Percentage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Math</td>
-                            <td>85%</td>
-                        </tr>
-                        <tr>
-                            <td>English</td>
-                            <td>90%</td>
-                        </tr>
-                        <tr>
-                            <td>Physics</td>
-                            <td>80%</td>
-                        </tr>
-                        <tr>
-                            <td>Chemistry</td>
-                            <td>88%</td>
-                        </tr>
-                        <tr>
-                            <td>Biology</td>
-                            <td>92%</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <section id="checkattendance" style="display: none;">
+                <h2 class="text-primary">Check Class Attendance</h2>
+
+  <!-- 1. Input Student ID -->
+                     <form action="attendanceManagement.jsp" method="post">
+                     <label for="studentId">Student ID:</label>
+                     <input type="text" id="studentId" name="studentId" value="<%= request.getParameter("studentId") == null ? "" : request.getParameter("studentId") %>" required>
+                     </form> <br>
+
+                <!-- Select Class with Dropdown Menu -->
+                     <label for="classSelect">Select Class:</label>
+                     <select name="class" id="classSelect">
+                     <option value="">-- Select Class --</option>
+                     <option value="Class 1">Chemistry</option>
+                     <option value="Class 2">Math</option>
+                     <option value="Class 3">History</option>
+                     <option value="Class 3">Biology</option>
+                     <option value="Class 3">Computer Science</option>
+                     <option value="Class 3">Physics</option>
+                     <option value="Class 3">English</option>
+                     </select> <br><br>
+
+                         <!-- Text -->
+                         <p>Click here to Check Class Attendance:</p>
+
+                         <!-- Button -->
+                         <form action="nextPage.jsp" method="get">
+                             <button type="submit">Check</button>
+                         </form>
+
             </section>
         </main>
     </div>
